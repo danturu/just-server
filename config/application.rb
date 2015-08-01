@@ -32,5 +32,8 @@ module JustServer
 
     # Precompile fonts.
     config.assets.precompile += %w(*.woff2 *.eot *.ttf *.woff *.svg)
+
+    # Use WebSocket middleware.
+    config.middleware.use "MessagesMiddleware"
   end
 end
