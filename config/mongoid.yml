@@ -1,0 +1,93 @@
+production:
+  sessions:
+    default:
+      uri: <%= ENV["MONGOLAB_URI"] %>
+
+      options:
+        # Specifies the number of times to attempt an operation before giving up.
+        max_retries: 30
+
+        # Specifies the number of seconds to wait
+        # before retrying a single operation.
+        retry_interval: 1
+
+        # The default timeout is 5, which is the time in seconds
+        # for an operation to time out.
+        # We recommend 15 because it allows for plenty of time
+        # in most operating environments.
+        timeout: 15
+
+        # Specifies the number of seconds to cache server information.
+        # Lowering this number will help the driver recover more quickly
+        # from changes to replica set reconfiguration.
+        refresh_interval: 10
+
+        # If you're running a lot of threads, you may consider increasing
+        # to the number of threads you're running e.g.
+        # poolsize: <%= ENV['NUM_THREADS'] %>
+
+development:
+  sessions:
+    default:
+      database: just_server_development
+
+      hosts:
+        - 0.0.0.0
+
+      options:
+        # Change the default write concern.
+        # w: 1
+
+        # Change the default consistency model to primary, secondary:
+        # - 'secondary' will send reads to secondaries
+        # - 'primary' sends everything to master
+        # read: secondary_preferred
+
+        # How many times should attempt to retry an operation after failure.
+        # max_retries: 20
+
+        # The time in seconds that should wait before retrying
+        # on operation on failure.
+        # retry_interval: 0.25
+
+  options:
+    # Includes the root model name in json serialization.
+    # include_root_in_json: false
+
+    # Preload all models in development, needed when models use inheritance.
+    # preload_models: false
+
+    # Protect id and type from mass assignment.
+    # protect_sensitive_fields: true
+
+    # Raise an error when performing a #find and the document is not found.
+    # raise_not_found_error: true
+
+    # Raise an error when defining a scope with the same name as an
+    # existing method.
+    # scope_overwrite_exception: false
+
+    # Use Active Support's time zone in conversions.
+    # use_activesupport_time_zone: true
+
+    # Ensure all times are UTC in the app side.
+    # use_utc: false
+
+test:
+  sessions:
+    default:
+      database: just_server_test
+
+      hosts:
+        - 0.0.0.0
+
+      options:
+        read: primary
+
+        # In the test environment we lower the retries
+        # to low amounts for fast failures.
+        max_retries: 1
+
+        # In the test environment we lower the retry interval
+        # to low amounts for fast failures.
+        retry_interval: 0
